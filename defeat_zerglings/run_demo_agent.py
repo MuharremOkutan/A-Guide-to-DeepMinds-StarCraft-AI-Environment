@@ -22,10 +22,11 @@ FLAGS = flags.FLAGS
 def main():
   FLAGS(sys.argv)
   with sc2_env.SC2Env(
-      "DefeatZerglingsAndBanelings",
+      map_name="DefeatZerglingsAndBanelings",
       step_mul=step_mul,
       visualize=True,
-      game_steps_per_episode=steps * step_mul) as env:
+      game_steps_per_episode=steps * step_mul
+  ) as env:
 
     demo_replay = []
 

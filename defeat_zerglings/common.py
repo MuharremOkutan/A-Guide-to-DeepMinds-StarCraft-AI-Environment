@@ -154,9 +154,7 @@ def select_marine(env, obs):
 
   group_list = update_group_list(obs)
 
-  if(check_group_list(env, obs)):
-    obs = init(env, player_relative, obs)
-    group_list = update_group_list(obs)
+
 
   # if(len(group_list) == 0):
   #   obs = init(env, player_relative, obs)

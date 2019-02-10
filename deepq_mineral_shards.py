@@ -6,6 +6,7 @@ import tensorflow as tf
 import zipfile
 
 import baselines.common.tf_util as U
+import baselines.deepq.utils as U2
 
 from baselines import logger
 from baselines.common.schedules import LinearSchedule
@@ -50,7 +51,7 @@ class ActWrapper(object):
         f.write(model_data)
 
       zipfile.ZipFile(arc_path, 'r', zipfile.ZIP_DEFLATED).extractall(td)
-      U.load_state(os.path.join(td, "model"))
+      U2.load_state(os.path.join(td, "model"))
 
     return ActWrapper(act)
 
@@ -60,7 +61,7 @@ class ActWrapper(object):
   def save(self, path):
     """Save model to a pickle located at `path`"""
     with tempfile.TemporaryDirectory() as td:
-      U.save_state(os.path.join(td, "model"))
+      U2.save_state(os.path.join(td, "model"))
       arc_name = os.path.join(td, "packed.zip")
       with zipfile.ZipFile(arc_name, 'w') as zipf:
         for root, dirs, files in os.walk(td):
@@ -190,7 +191,7 @@ def learn(env,
   sess.__enter__()
 
   def make_obs_ph(name):
-    return U.BatchInput((64, 64), name=name)
+    return U2.BatchInput((64, 64), name=name)
 
   act, train, update_target, debug = deepq.build_train(
     make_obs_ph=make_obs_ph,

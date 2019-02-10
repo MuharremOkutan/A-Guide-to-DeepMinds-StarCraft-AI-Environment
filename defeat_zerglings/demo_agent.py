@@ -46,6 +46,11 @@ class MarineAgent(base_agent.BaseAgent):
 
   def __init__(self, env):
     self.env = env
+    self.reward = 0
+    self.episodes = 0
+    self.steps = 0
+    self.obs_spec = None
+    self.action_spec = None
 
   def step(self, obs):
     super(MarineAgent, self).step(obs)
